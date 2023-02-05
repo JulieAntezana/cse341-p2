@@ -1,0 +1,58 @@
+Recipes
+  _id                     
+  recipeName              
+  recipeSize              
+  recipeCategory          
+  recipeContainer         
+  recipeIngredients       
+  recipeInstructions      
+  recipeNotes             
+
+Flowers
+  _id                       
+  commonName                
+  botanicalName             
+  botanicalFamily           
+  botanicalGenus            
+  availability              
+    where                   
+    when                    
+  vaseLife                  
+  description           
+    notes                   
+    stemLength              
+  colorRange                
+  florist                   
+    conditioning            
+    storage                 
+    display                 
+    stemType                
+  homeCare                  
+  
+Market
+  _id                     
+  item                    
+  commName                
+  cityName                
+  packageDesc             
+  varietyName             
+  subvarName              
+  gradeDesc               
+  reportDate             
+  lowPriceMin             
+  highPriceMax            
+  mostlyLowMin            
+  mostlyHighMax           
+  originName              
+  districtName            
+  itemSizeDesc            
+  color                   
+  envDesc                 
+  unitSale                
+  quality                 
+  conditioning            
+  appearance              
+  storage                 
+  offerings               
+  marketTone              
+  comment                 

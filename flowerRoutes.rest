@@ -1,0 +1,162 @@
+// LOCALHOST 
+### get all flowers
+GET http://localhost:8080/flowers
+
+### Get single flower by Id
+GET http://localhost:8080/flowers/63cc041a1b1ea223f39615c1
+
+### Create a flower 
+POST http://localhost:8080/flowers/ HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "22222",            
+  "commonName": "Rose",                
+  "botanicalName": "Rosa",             
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa",            
+  "availability": [
+    {
+      "where": "Everywhere",
+      "when": "All year round, peaks May-September"
+    }
+  ],                                
+  "vaseLife": "Approx. 7 - 12 days.",                  
+  "description": [
+    {
+      "notes": "Pronounced 'Rose-za.' A pretty rose with a number of heads on a single stem. Smaller and more delicate than the single headed rose, they have a charm and appeal all of their own.",
+      "stemLength": "Medium"
+    }
+  ],                       
+  "colorRange": "In all colors and shades with the exception of green, blue, and black.",                
+  "florist": [
+    {
+    "conditioning": "Roses are very sensitive to bacteria, so it's important that all vases and containers are clean. Remove all leaves in contact with water but only remove thorns if necessary. Add flower food change water every 2 - 3 days.",            
+    "storage": "Ideal temperature range 36 - 41 degress Fahrenheit.",                 
+    "display": "Display in a cool spot with good air circulation to minimize the effects of ethylene gas and botrytis.",                 
+    "stemType": "Woody"
+    }
+  ],                                   
+  "homeCare": "Re-cut stems and stand in fresh, cold water in a clean vase. Add flower food change water every 2 - 3 days. Stand in a cool spot with good air circulation. Remove any leaves in contact with water. Arrange spray roses with Veronica, larkspur, or sweet peas for a natural, country look."
+}
+
+  
+### Update a flower 
+PUT http://localhost:8080/flowers/63d009485248b2af338e1f6c HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "22222",            
+  "commonName": "Rose",                
+  "botanicalName": "Rosa",             
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa",            
+  "availability": [
+    {
+      "where": "Most parts of the northern and southern hemisphere.",
+      "when": "All year round, peaks May-September"
+    }
+  ],                                
+  "vaseLife": "Approx. 7 - 12 days.",                  
+  "description": [
+    {
+      "notes": "Pronounced 'Rose-za.' A pretty rose with a number of heads on a single stem. Smaller and more delicate than the single headed rose, they have a charm and appeal all of their own.",
+      "stemLength": "Medium"
+    }
+  ],                       
+  "colorRange": "In all colors and shades with the exception of green, blue, and black.",                
+  "florist": [
+    {
+    "conditioning": "Roses are very sensitive to bacteria, so it's important that all vases and containers are clean. Remove all leaves in contact with water but only remove thorns if necessary. Add flower food change water every 2 - 3 days.",            
+    "storage": "Ideal temperature range 36 - 41 degress Fahrenheit.",                 
+    "display": "Display in a cool spot with good air circulation to minimize the effects of ethylene gas and botrytis.",                 
+    "stemType": "Woody"
+    }
+  ],                                   
+  "homeCare": "Re-cut stems and stand in fresh, cold water in a clean vase. Add flower food change water every 2 - 3 days. Stand in a cool spot with good air circulation. Remove any leaves in contact with water. Arrange spray roses with Veronica, larkspur, or sweet peas for a natural, country look."
+}
+
+### Delete a flower
+DELETE http://localhost:8080/flowers/63d009485248b2af338e1f6c
+
+
+// PRODUCTION Deploy 
+
+### Get all flowers
+GET https://cse341-w2.onrender.com/flowers/ 
+
+### Get a single flower by Id
+GET https://cse341-w2.onrender.com/flowers/63de262c882fc17d74f6d5e7 
+
+### Create a flower 
+POST https://cse341-w2.onrender.com/flowers/ HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "22222",            
+  "commonName": "Rose",                
+  "botanicalName": "Rosa",             
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa",            
+  "availability": [
+    {
+      "where": "Everywhere",
+      "when": "All year round, peaks May-September"
+    }
+  ],                                
+  "vaseLife": "Approx. 7 - 12 days.",                  
+  "description": [
+    {
+      "notes": "Pronounced 'Rose-za.' A pretty rose with a number of heads on a single stem. Smaller and more delicate than the single headed rose, they have a charm and appeal all of their own.",
+      "stemLength": "Medium"
+    }
+  ],                       
+  "colorRange": "In all colors and shades with the exception of green, blue, and black.",                
+  "florist": [
+    {
+    "conditioning": "Roses are very sensitive to bacteria, so it's important that all vases and containers are clean. Remove all leaves in contact with water but only remove thorns if necessary. Add flower food change water every 2 - 3 days.",            
+    "storage": "Ideal temperature range 36 - 41 degress Fahrenheit.",                 
+    "display": "Display in a cool spot with good air circulation to minimize the effects of ethylene gas and botrytis.",                 
+    "stemType": "Woody"
+    }
+  ],                                   
+  "homeCare": "Re-cut stems and stand in fresh, cold water in a clean vase. Add flower food change water every 2 - 3 days. Stand in a cool spot with good air circulation. Remove any leaves in contact with water. Arrange spray roses with Veronica, larkspur, or sweet peas for a natural, country look."
+}
+  
+### Update a flower 
+PUT https://cse341-w2.onrender.com/flowers/63deab1a12dbce785846d80f HTTP/1.1
+content-type: application/json
+
+{
+  "_id": "22222",            
+  "commonName": "Rose",                
+  "botanicalName": "Rosa",             
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa",            
+  "availability": [
+    {
+      "where": "Most parts of the northern and southern hemisphere.",
+      "when": "All year round, peaks May-September"
+    }
+  ],                                
+  "vaseLife": "Approx. 7 - 12 days.",                  
+  "description": [
+    {
+      "notes": "Pronounced 'Rose-za.' A pretty rose with a number of heads on a single stem. Smaller and more delicate than the single headed rose, they have a charm and appeal all of their own.",
+      "stemLength": "Medium"
+    }
+  ],                       
+  "colorRange": "In all colors and shades with the exception of green, blue, and black.",                
+  "florist": [
+    {
+    "conditioning": "Roses are very sensitive to bacteria, so it's important that all vases and containers are clean. Remove all leaves in contact with water but only remove thorns if necessary. Add flower food change water every 2 - 3 days.",            
+    "storage": "Ideal temperature range 36 - 41 degress Fahrenheit.",                 
+    "display": "Display in a cool spot with good air circulation to minimize the effects of ethylene gas and botrytis.",                 
+    "stemType": "Woody"
+    }
+  ],                                   
+  "homeCare": "Re-cut stems and stand in fresh, cold water in a clean vase. Add flower food change water every 2 - 3 days. Stand in a cool spot with good air circulation. Remove any leaves in contact with water. Arrange spray roses with Veronica, larkspur, or sweet peas for a natural, country look."
+}
+
+### Delete a flower
+DELETE https://cse341-w2.onrender.com/flowers/63deab1a12dbce785846d80f
