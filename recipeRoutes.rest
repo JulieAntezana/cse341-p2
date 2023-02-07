@@ -1,12 +1,12 @@
 // LOCALHOST 
 ### get all recipes
-GET http://localhost:8080/recipes
+GET http://localhost:3000/recipes
 
 ### Get single recipe by Id
-GET http://localhost:8080/recipes/63cc041a1b1ea223f39615c1
+GET http://localhost:3000/recipes/63cc041a1b1ea223f39615c1
 
 ### Create a recipe 
-POST http://localhost:8080/recipes/ HTTP/1.1
+POST http://localhost:3000/recipes/ HTTP/1.1
 content-type: application/json
 
   {
@@ -21,7 +21,7 @@ content-type: application/json
   }
   
 ### Update a recipe 
-PUT http://localhost:8080/recipes/63d009485248b2af338e1f6c HTTP/1.1
+PUT http://localhost:3000/recipes/63d009485248b2af338e1f6c HTTP/1.1
 content-type: application/json
 
   {
@@ -36,7 +36,7 @@ content-type: application/json
   }
 
 ### Delete a recipe
-DELETE http://localhost:8080/recipes/63d009485248b2af338e1f6c
+DELETE http://localhost:3000/recipes/63d009485248b2af338e1f6c
 
 
 // PRODUCTION Deploy 
