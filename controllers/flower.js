@@ -1,21 +1,20 @@
 const db = require('../models');
-const Recipe = db.recipes;
+const Flower = db.flower;
 
-exports.getRecipe = (req, res) => {
-  const recipeName = req.params.recipeName;
-  Recipe.find({ recipeName: recipeName })
+exports.getFlower = (req, res) => {
+  const flowerName = req.params.flowerName;
+  Flower.find({ flowerName: flowerName })
     .then((data) => {
-      if (!data) res.status(404).send({ message: 'Not found recipe with name: ' + recipeName });
+      if (!data) res.status(404).send({ message: 'Not found flower with name: ' + flowerName });
       else res.send(data[0]);
     })
     .catch((err) => {
       res.status(500).send({
-        message: 'Error retrieving recipe with recipeName=' + recipeName,
+        message: 'Error retrieving flower with flowerName=' + flowerName,
         error: err
       });
     });
 };
-
 
 // const apiKey =
 //   'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
@@ -30,23 +29,44 @@ exports.getRecipe = (req, res) => {
 //     return;
 //   }
 
-//   // Create a Recipe
-//   const recipe = new Recipe({
-//     recipe_id: req.body.recipe,
+  
+
+//   // Create a Flower
+//   const flower = new Flower({
+//     flower_id: req.body.flower,
 //     name: req.body.name,
-//     description: req.body.description,
-//     location: req.body.location,
+//     commonName: req.body.commonName,
+//     botanicalName: req.body.botanicalName,
+//     botanicalFamily: req.body.botanicalFamily,
+//     botanicalGenus: req.body.botanicalGenus,
+//     availability: array [
+//       where: req.body.where,
+//       when: req.body.when
+//     ],
+//     vaseLife: req.body.vaseLife,
+//     description: array [
+//       notes: req.body.notes,
+//       stemLength: req.body.stemLength
+//     ],
+//     colorRange: req.body.colorRange,
+//     florist: array [
+//       conditioning: req.body.conditioning,
+//       storage: req.body.storage,
+//       display: req.body.display,
+//       stemType: req.body.stemType
+//     ],
+//     homeCare:req.body.homeCare
 //   });
-//   // Save Recipe in the database
-//   recipe
-//     .save(recipe)
+//   // Save Flower in the database
+//   flower
+//     .save(flower)
 //     .then((data) => {
 //       res.send(data);
 //     })
 //     .catch((err) => {
 //       res.status(500).send({
 //         message:
-//           err.message || 'Some error occurred while creating the Recipe.',
+//           err.message || 'Some error occurred while creating the Flower.',
 //       });
 //     });
 // };
@@ -57,10 +77,10 @@ exports.getRecipe = (req, res) => {
 //   */
 //   console.log(req.header('apiKey'));
 //   if (req.header('apiKey') === apiKey) {
-//     Recipe.find(
+//     Flower.find(
 //       {},
 //       {
-//         recipe_id: 1,
+//         flower_id: 1,
 //         name: 1,
 //         location: 1,
 //         dedicated: 1,
@@ -74,7 +94,7 @@ exports.getRecipe = (req, res) => {
 //       .catch((err) => {
 //         res.status(500).send({
 //           message:
-//             err.message || 'Some error occurred while retrieving recipes.',
+//             err.message || 'Some error occurred while retrieving flowers.',
 //         });
 //       });
 //   } else {
@@ -82,24 +102,22 @@ exports.getRecipe = (req, res) => {
 //   }
 // };
 
-// // Find a single Recipe with an id
+// // Find a single Flower with an id
 // exports.findOne = (req, res) => {
-//   /*
-//     #swagger.description = 'API Key if needed: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68XwZj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
-//   */
-//   const recipe_id = req.params.recipe_id;
+
+//   const flower_id = req.params.flower_id;
 //   if (req.header('apiKey') === apiKey) {
-//     Recipe.find({ recipe_id: recipe_id })
+//     Flower.find({ flower_id: flower_id })
 //       .then((data) => {
 //         if (!data)
 //           res
 //             .status(404)
-//             .send({ message: 'Not found Recipe with id ' + recipe_id });
+//             .send({ message: 'Not found Flower with id ' + flower_id });
 //         else res.send(data[0]);
 //       })
 //       .catch((err) => {
 //         res.status(500).send({
-//           message: 'Error retrieving Recipe with recipe_id=' + recipe_id,
+//           message: 'Error retrieving Flower with flower_id=' + flower_id,
 //         });
 //       });
 //   } else {

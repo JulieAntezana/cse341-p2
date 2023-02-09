@@ -1,18 +1,22 @@
-const routes = require('express').Router();
-const recipe = require('./recipe');
+const express = require('express');
+const router = express.Router();
+// const recipe = require('./recipe');
 const flower = require('./flower');
+const user = require('./user');
 
-routes.use('/', require('./swagger'));
-routes.use('/recipe', recipe);
-routes.use('/flower', flower);
-routes.use(
-  '/',
-  (docData = (req, res) => {
-    let docData = {
-      documentationURL: 'https://julieantezana.github.io/julie-byui-api-docs',
-    };
-    res.send(docData);
-  })
-);
+router.use('/', require('./swagger'));
+// router.use('/recipe', recipe);
+router.use('/flower', flower);
+router.use('/user', user);
+router.use('/user', require('./user'));
+// router.use(
+//   '/',
+//   (docData = (req, res) => {
+//     let docData = {
+//       documentationURL: 'https://cse341-p2.onrender.com',
+//     };
+//     res.send(docData);
+//   })
+// );
 
-module.exports = routes;
+module.exports = router;

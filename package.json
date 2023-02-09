@@ -6,18 +6,21 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "swagger": "node ./swagger.js"
+    "swagger": "node ./swagger.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/julieantezana/floral-api.git"
+    "url": "https://github.com/julieantezana/cse342-p2.git"
   },
-  "author": "Nathan Birch",
+  "author": "Julie Antezana",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/julieantezana/floral-api/issues"
+    "url": "https://github.com/julieantezana/cse342-p2/issues"
   },
-  "homepage": "https://github.com/julieantezana/floral-api#readme",
+  "homepage": "https://github.com/julieantezana/cse342-p2#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
@@ -29,7 +32,11 @@
     "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.20",
+    "prettier": "^2.5.1",
     "swagger-autogen": "^2.23.0"
   }
 }
