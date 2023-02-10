@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 // const recipe = require('./recipe');
-const flower = require('./flower');
-const user = require('./user');
+const flowers = require('./flowers');
+const users = require('./users');
 
 router.use('/', require('./swagger'));
 // router.use('/recipe', recipe);
-router.use('/flower', flower);
-router.use('/user', user);
-router.use('/user', require('./user'));
+router.use('/flowers', flowers);
+router.use('/users', users);
+router.use('/user', require('./users'));
 // router.use(
 //   '/',
 //   (docData = (req, res) => {

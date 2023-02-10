@@ -1,5 +1,5 @@
 const db = require('../models');
-const Flower = db.flower;
+const Flower = db.flowers;
 
 exports.getFlower = (req, res) => {
   const flowerName = req.params.flowerName;

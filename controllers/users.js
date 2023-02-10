@@ -1,5 +1,5 @@
 const db = require('../models');
-const User = db.user;
+const User = db.users;
 
 exports.create = (req, res) => {
   // Validate request

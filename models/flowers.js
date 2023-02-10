@@ -1,6 +1,6 @@
 module.exports = (mongoose) => {
   const Flower = mongoose.model(
-    'flower',
+    'flowers',
     mongoose.Schema({
       "Flower": {
         "type": {

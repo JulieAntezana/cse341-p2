@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const flowerController = require('../controllers/flower');
+const flowerController = require('../controllers/flowers');
 router.get('/:flowerName', flowerController.getFlower);
 
 // const routes = require('express').Router();
