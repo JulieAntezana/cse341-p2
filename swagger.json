@@ -1,18 +1,18 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is an api server for a portfolio builder website.\n",
+    "description": "This is an api server for a floral guide website.\n",
     "version": "1.0.0",
-    "title": "Portfolio Builder",
+    "title": "Floral API",
     "contact": {
-      "email": "birchn@byui.edu"
+      "email": "jantezana@byui.edu"
     },
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "birch-portfolio-builder.herokuapp.com",
+  "host": "localhost:8080/api-docs",
   "basePath": "/",
   "tags": [
     {
