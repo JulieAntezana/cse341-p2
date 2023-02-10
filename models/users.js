@@ -1,70 +1,70 @@
 module.exports = (mongoose) => {
-  const User = mongoose.model(
-    'users',
-    mongoose.Schema({
-      "User": {
-        "type": {
-          "type": "String"
-        },
-        "properties": {
-          "id": {
-            "type": {
-              "type": "String"
-            },
-            "format": {
-              "type": "String"
-            }
-          },
-          "username": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "firstName": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "lastName": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "email": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "password": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "phone": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "userStatus": {
-            "type": {
-              "type": "String"
-            },
-            "format": {
-              "type": "String"
-            },
-            "description": {
-              "type": "String"
-            }
-          }
-        },
-        "xml": {
-          "name": {
-            "type": "String"
-          }
-        }
+  const userSchema = mongoose.Schema({
+    username: {
+      type: String
+    },
+    password: {
+      type: String
+    },
+    displayName: {
+      type: String
+    },
+    email: {
+      type: String
+    },
+    phoneNumber: {
+      type: String
+    },
+    currentLocation: {
+      type: String
+    },
+    openToNewOpportunities: {
+      type: Boolean
+    },
+    profileIsPublic: {
+      type: Boolean
+    },
+    theme_name: {
+      type: String
+    },
+    info: {
+      email: {
+        type: String
+      },
+      phoneNumber: {
+        type: String
+      },
+      currentLocation: {
+        type: String
+      },
+      openToNewOpportunities: {
+        type: Boolean
+      },
+      profileIsPublic: {
+        type: Boolean
+      },
+      theme_name: {
+        type: String
       }
-    })
-  );
+    },
+    profile: {
+      experience: {
+        type: [mongoose.SchemaTypes.Mixed]
+      },
+      education: {
+        type: [mongoose.SchemaTypes.Mixed]
+      },
+      projects: {
+        type: [mongoose.SchemaTypes.Mixed]
+      },
+      skills: {
+        type: [String]
+      },
+      references: {
+        type: [mongoose.SchemaTypes.Mixed]
+      }
+    }
+  });
 
-  return User;
+  return mongoose.model('users', userSchema);
 };

@@ -1,27 +1,20 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "This is a sample Flower Guide and Floral Recipebox server.  You can find\nout more about Swagger at\n[http://swagger.io](http://swagger.io) or on\n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n",
+    "description": "This is a sample Flower Guide server.\n",
     "version": "2.0.0",
-    "title": "Swagger Floral API",
+    "title": "Floral API",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "email": "apiteam@swagger.io"
+      "email": "jantezana@byui.edu"
     },
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "servers": [
-    {
-      "description": "SwaggerHub API Auto Mocking",
-      "url": "https://virtserver.swaggerhub.com/JANTEZANA_1/FloralAPI/2.0.0"
-    },
-    {
-      "url": "https://floral.swagger.io/v2"
-    }
-  ],
+  "host": "https://cse341-p2.onrender.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "flowers",
@@ -36,246 +29,199 @@
       }
     }
   ],
-  "components": {
-    "schemas": {
-      "Category": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "format": "string"
         },
-        "xml": {
-          "name": "Category"
-        }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "username": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "userStatus": {
-            "type": "integer",
-            "format": "int32",
-            "description": "User Status"
-          }
+        "username": {
+          "type": "string"
         },
-        "xml": {
-          "name": "User"
-        }
-      },
-      "Tag": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
+        "password": {
+          "type": "string"
         },
-        "xml": {
-          "name": "Tag"
+        "displayName": {
+          "type": "string"
         }
-      },
-      "Flower": {
-        "type": "object",
-        "required": [
-          "name",
-          "photoUrls"
-        ],
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "category": {
-            "$ref": "#/components/schemas/Category"
-          },
-          "name": {
-            "type": "string",
-            "example": "rose"
-          },
-          "commonName": {
-            "type": "string"
-          },
-          "botanicalName": {
-            "type": "string"
-          },
-          "botanicalFamily": {
-            "type": "string"
-          },
-          "botanicalGenus": {
-            "type": "string"
-          },
-          "availability": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "where": {
-                  "type": "string"
-                },
-                "when": {
-                  "type": "string"
-                }
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Flower": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "rose"
+        },
+        "commonName": {
+          "type": "string"
+        },
+        "botanicalName": {
+          "type": "string"
+        },
+        "botanicalFamily": {
+          "type": "string"
+        },
+        "botanicalGenus": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "where": {
+                "type": "string"
+              },
+              "when": {
+                "type": "string"
               }
             }
-          },
-          "vaseLife": {
-            "type": "string"
-          },
-          "description": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "notes": {
-                  "type": "string"
-                },
-                "stemLength": {
-                  "type": "string"
-                }
+          }
+        },
+        "vaseLife": {
+          "type": "string"
+        },
+        "description": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "notes": {
+                "type": "string"
+              },
+              "stemLength": {
+                "type": "string"
               }
-            }
-          },
-          "colorRange": {
-            "type": "string"
-          },
-          "florist": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "conditioning": {
-                  "type": "string"
-                },
-                "storage": {
-                  "type": "string"
-                },
-                "display": {
-                  "type": "string"
-                },
-                "stemType": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "homeCare": {
-            "type": "string"
-          },
-          "photoUrls": {
-            "type": "array",
-            "xml": {
-              "name": "photoUrl",
-              "wrapped": true
-            },
-            "items": {
-              "type": "string"
-            }
-          },
-          "tags": {
-            "type": "array",
-            "xml": {
-              "name": "tag",
-              "wrapped": true
-            },
-            "items": {
-              "$ref": "#/components/schemas/Tag"
             }
           }
         },
-        "xml": {
-          "name": "Flower"
-        }
-      },
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
+        "colorRange": {
+          "type": "string"
+        },
+        "florist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditioning": {
+                "type": "string"
+              },
+              "storage": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              },
+              "stemType": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "homeCare": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
           }
         }
       }
     },
-    "requestBodies": {
-      "Flower": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Flower"
-            }
-          },
-          "application/xml": {
-            "schema": {
-              "$ref": "#/components/schemas/Flower"
-            }
-          }
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
         },
-        "description": "Flower object that needs to be added to the Flower Guide",
-        "required": true
-      },
-      "UserArray": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
+        "type": {
+          "type": "string"
         },
-        "description": "List of user object",
-        "required": true
+        "message": {
+          "type": "string"
+        }
       }
+    }
+  },
+  "requestBodies": {
+    "Flower": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/definitions/Flower"
+          }
+        },
+        "application/xml": {
+          "schema": {
+            "$ref": "#/definitions/Flower"
+          }
+        }
+      },
+      "description": "Flower object that needs to be added to the Flower Guide",
+      "required": true
     },
-    "securitySchemes": {
-      "floral_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://recipebox.swagger.io/oauth/dialog",
-            "scopes": {
-              "write:recipes": "modify recipes in your account",
-              "read:recipes": "read your recipes"
+    "UserArray": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User"
             }
           }
         }
-      }
+      },
+      "description": "List of user objects",
+      "required": true
     }
   },
   "paths": {
@@ -364,7 +310,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Flower"
+                    "$ref": "#/definitions/Flower"
                   }
                 }
               },
@@ -372,7 +318,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Flower"
+                    "$ref": "#/definitions/Flower"
                   }
                 }
               }
@@ -392,136 +338,131 @@
         ]
       }
     },
-    "/flower/{flowerId}": {
+    "/flowers/{flowerName}": {
       "get": {
-        "tags": [
-          "flower"
-        ],
-        "summary": "Find flower by ID",
-        "description": "Returns a single flower",
-        "operationId": "getFlowerById",
+        "tags": ["flowers"],
+        "summary": "Finds Flowers by name",
+        "description": "Each flower has a unique name, this will basically find a single flower by an exact name almost like an id",
+        "operationId": "findFlowerByName",
+        "produces": ["application/json"],
         "parameters": [
           {
-            "name": "flowerId",
+            "name": "flowerName",
             "in": "path",
-            "description": "ID of flower to return",
+            "description": "Flower name string is required and functions as id",
             "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+            "type": "string",
+            "items": {
+              "type": "string",
+              "default": "available"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "security": [
+          {
+            "floral_auth": ["write:flowers", "read:flowers"]
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Flower"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Flower"
-                }
-              }
+            "schema": {
+              "type": "object"
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Flower not found"
+            "description": "Invalid theme name value"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "flower"
-        ],
-        "summary": "Updates a flower in the Flower Guide with form data",
-        "operationId": "updateFlowerWithForm",
-        "parameters": [
-          {
-            "name": "flowerId",
-            "in": "path",
-            "description": "ID of flower that needs to be updated",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:recipes",
-              "read:recipes"
-            ]
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "description": "Updated name of the recipe",
-                    "type": "string"
-                  },
-                  "status": {
-                    "description": "Updated status of the recipe",
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "flower"
-        ],
-        "summary": "Deletes a flower",
-        "operationId": "deleteFlower",
-        "parameters": [
-          {
-            "name": "flowerId",
-            "in": "path",
-            "description": "Flower id to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Flower not found"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flowers",
-              "read:flowers"
-            ]
-          }
-        ]
       }
+    },
+    "put": {
+      "tags": [
+        "flower"
+      ],
+      "summary": "Updates a flower in the Flower Guide with form data",
+      "operationId": "updateFlowerWithForm",
+      "parameters": [
+        {
+          "name": "flowerId",
+          "in": "path",
+          "description": "ID of flower that needs to be updated",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "405": {
+          "description": "Invalid input"
+        }
+      },
+      "security": [
+        {
+          "floral_auth": [
+            "write:recipes",
+            "read:recipes"
+          ]
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "Updated name of the recipe",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Updated status of the recipe",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": [
+        "flower"
+      ],
+      "summary": "Deletes a flower",
+      "operationId": "deleteFlower",
+      "parameters": [
+        {
+          "name": "flowerId",
+          "in": "path",
+          "description": "Flower id to delete",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid ID supplied"
+        },
+        "404": {
+          "description": "Flower not found"
+        }
+      },
+      "security": [
+        {
+          "floral_auth": [
+            "write:flowers",
+            "read:flowers"
+          ]
+        }
+      ]
+    }
     },
     "/flower/{flowerId}/uploadImage": {
       "post": {
@@ -548,7 +489,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponse"
+                  "$ref": "#/definitions/ApiResponse"
                 }
               }
             }
@@ -574,91 +515,67 @@
         }
       }
     },
-    "/user": {
+    "/users": {
       "post": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Create user",
-        "description": "This can only be done by the logged in user.",
+        "description": "This is for when a user creates an account.",
         "operationId": "createUser",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Credentials"
+            }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
+        ],
+        "responses": {
+          "201": {
+            "description": "successfully created user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Nike Theme"
+                }
               }
             }
           },
-          "description": "Created user object",
-          "required": true
-        }
-      }
-    },
-    "/user/createWithArray": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Creates list of users with given input array",
-        "operationId": "createUsersWithArrayInput",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+          "400": {
+            "description": "Invalid theme name value"
           }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/UserArray"
-        }
-      }
-    },
-    "/user/createWithList": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "summary": "Creates list of users with given input array",
-        "operationId": "createUsersWithListInput",
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/UserArray"
         }
       }
     },
     "/user/login": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["Not Yet Implemented"],
         "summary": "Logs user into the system",
         "operationId": "loginUser",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "username",
             "in": "query",
             "description": "The user name for login",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           },
           {
             "name": "password",
             "in": "query",
             "description": "The password for login in clear text",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
@@ -666,31 +583,18 @@
             "description": "successful operation",
             "headers": {
               "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
               },
               "X-Expires-After": {
-                "description": "date in UTC when token expires",
-                "schema": {
-                  "type": "string",
-                  "format": "date-time"
-                }
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
               }
             },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+            "schema": {
+              "type": "string"
             }
           },
           "400": {
@@ -701,11 +605,11 @@
     },
     "/user/logout": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["Not Yet Implemented"],
         "summary": "Logs out current logged in user session",
         "operationId": "logoutUser",
+        "produces": ["application/json"],
+        "parameters": [],
         "responses": {
           "default": {
             "description": "successful operation"
@@ -715,36 +619,24 @@
     },
     "/user/{username}": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Get user by user name",
         "operationId": "getUserByName",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "username",
             "in": "path",
-            "description": "The name that needs to be fetched. Use user1 for testing.",
+            "description": "The name that needs to be fetched.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           },
           "400": {
@@ -756,62 +648,60 @@
         }
       },
       "put": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Updated user",
         "description": "This can only be done by the logged in user.",
         "operationId": "updateUser",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "username",
             "in": "path",
             "description": "name that need to be updated",
             "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/User"
             }
           }
         ],
         "responses": {
+          "204": {
+            "description": "Successfully modified user"
+          },
           "400": {
             "description": "Invalid user supplied"
           },
           "404": {
             "description": "User not found"
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "description": "Updated user object",
-          "required": true
         }
       },
       "delete": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "summary": "Delete user",
         "description": "This can only be done by the logged in user.",
         "operationId": "deleteUser",
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "username",
             "in": "path",
             "description": "The name that needs to be deleted",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
+          "204": {
+            "description": "Successfully deleted user"
+          },
           "400": {
             "description": "Invalid username supplied"
           },
@@ -820,10 +710,53 @@
           }
         }
       }
+    },
+    "/user": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Get all users",
+        "operationId": "getAllUsers",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "Array",
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      },
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user",
+        "description": "This is for when a user creates an account",
+        "operationId": "createUser",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Credentials"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "A User object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
     }
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
-  }
-}
+  } 
+
+
