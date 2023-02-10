@@ -357,7 +357,7 @@
         ],
         "security": [
           {
-            "floral_auth": ["write:flowers", "read:flower"]
+            "floral_auth": ["write:flowers", "read:flowers"]
           }
         ],
         "responses": {
@@ -368,7 +368,7 @@
             }
           },
           "400": {
-            "description": "Invalid theme name value"
+            "description": "Invalid flower name value"
           }
         }
       }
