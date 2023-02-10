@@ -276,7 +276,7 @@
     "/flowers": {
       "post": {
         "tags": [
-          "flower"
+          "flowers"
         ],
         "summary": "Add a new flower to the database",
         "operationId": "addFlower",
@@ -327,7 +327,7 @@
     },
     "/flower/findByTags": {
       "get": {
-        "tags": ["flowers"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Finds Flowers by tags",
         "description": "Muliple tags can be provided with comma separated strings. Use\\ \\ tag1, tag2, tag3 for testing.",
         "operationId": "findFlowersByTags",
@@ -510,7 +510,7 @@
     "/flower/{flowerId}/uploadImage": {
       "post": {
         "tags": [
-          "flower"
+          "Not Yet Implemented"
         ],
         "summary": "uploads an image",
         "operationId": "uploadFlowerFile",
@@ -639,12 +639,15 @@
     },
     "Credentials": {
       "type": "object",
-      "required": ["password", "username"],
+      "required": ["password", "username", "displayName"],
       "properties": {
         "username": {
           "type": "string"
         },
         "password": {
+          "type": "string"
+        },
+        "displayName": {
           "type": "string"
         }
       }
