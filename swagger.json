@@ -22,11 +22,7 @@
     },
     {
       "name": "user",
-      "description": "Operations about user",
-      "externalDocs": {
-        "description": "Find out more about our Floral Guide and Floral Arranging Recipebox",
-        "url": "http://swagger.io"
-      }
+      "description": "Operations about user"
     }
   ],
   "securityDefinitions": {
@@ -35,8 +31,8 @@
       "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
       "flow": "implicit",
       "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
+        "write:flower": "modify pets in your account",
+        "read:flower": "read your pets"
       }
     }
   },
@@ -240,8 +236,8 @@
         "security": [
           {
             "floral_auth": [
-              "write:flowers",
-              "read:flowers"
+              "write:flower",
+              "read:flower"
             ]
           }
         ],
@@ -269,8 +265,8 @@
         "security": [
           {
             "floral_auth": [
-              "write:flowers",
-              "read:flowers"
+              "write:flower",
+              "read:flower"
             ]
           }
         ],
@@ -331,8 +327,8 @@
         "security": [
           {
             "floral_auth": [
-              "write:flowers",
-              "read:flowers"
+              "write:flower",
+              "read:flower"
             ]
           }
         ]
@@ -361,7 +357,7 @@
         ],
         "security": [
           {
-            "floral_auth": ["write:flowers", "read:flowers"]
+            "floral_auth": ["write:flowers", "read:flower"]
           }
         ],
         "responses": {
@@ -403,8 +399,8 @@
       "security": [
         {
           "floral_auth": [
-            "write:recipes",
-            "read:recipes"
+            "write:flower",
+            "read:flower"
           ]
         }
       ],
@@ -457,8 +453,8 @@
       "security": [
         {
           "floral_auth": [
-            "write:flowers",
-            "read:flowers"
+            "write:flower",
+            "read:flower"
           ]
         }
       ]
@@ -498,8 +494,8 @@
         "security": [
           {
             "floral_auth": [
-              "write:flowers",
-              "read:flowers"
+              "write:flower",
+              "read:flower"
             ]
           }
         ],
