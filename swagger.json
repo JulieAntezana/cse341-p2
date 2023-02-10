@@ -1,24 +1,23 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "description": "This is a sample Flower Guide server.\n",
-    "version": "2.0.0",
-    "title": "Floral API",
-    "termsOfService": "http://swagger.io/terms/",
+    "description": "This is an api server for a portfolio builder website.\n",
+    "version": "1.0.0",
+    "title": "Portfolio Builder",
     "contact": {
-      "email": "jantezana@byui.edu"
+      "email": "birchn@byui.edu"
     },
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "https://cse341-p2.onrender.com",
+  "host": "birch-portfolio-builder.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
-      "name": "flowers",
-      "description": "Access to Flower Guide"
+      "name": "theme",
+      "description": "Operations about themes"
     },
     {
       "name": "user",
@@ -31,7 +30,46 @@
   ],
   "schemes": ["https"],
   "paths": {
-    "/user": {
+    "/theme/{themeName}": {
+      "get": {
+        "tags": ["theme"],
+        "summary": "Finds Themes by name",
+        "description": "Each theme has a unique name, this will basically find a single theme by an exact name almost like an id",
+        "operationId": "findThemeByName",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "themeName",
+            "in": "path",
+            "description": "Theme name string is required and functions as id",
+            "required": true,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "default": "available"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid theme name value"
+          }
+        }
+      }
+    },
+    "/user/create": {
       "post": {
         "tags": ["user"],
         "summary": "Create user",
@@ -59,20 +97,15 @@
                   "type": "integer",
                   "format": "int64"
                 },
-                "username": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                },
-                "displayName": {
-                  "type": "string"
+                "name": {
+                  "type": "string",
+                  "example": "Nike Theme"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid user name value"
+            "description": "Invalid theme name value"
           }
         }
       }
@@ -169,7 +202,7 @@
         }
       },
       "put": {
-        "tags": ["Not Yet Implemented"],
+        "tags": ["user"],
         "summary": "Updated user",
         "description": "This can only be done by the logged in user.",
         "operationId": "updateUser",
@@ -205,7 +238,7 @@
         }
       },
       "delete": {
-        "tags": ["Not Yet Implemented"],
+        "tags": ["user"],
         "summary": "Delete user",
         "description": "This can only be done by the logged in user.",
         "operationId": "deleteUser",
@@ -232,9 +265,9 @@
         }
       }
     },
-    "/user/{getAllUsers}": {
+    "/user": {
       "get": {
-        "tags": ["Not Yet Implemented"],
+        "tags": ["user"],
         "summary": "Get all users",
         "operationId": "getAllUsers",
         "produces": ["application/json"],
@@ -250,325 +283,33 @@
             "description": "Error occurred"
           }
         }
-      }
-    },
-    "/flowers": {
-      "post": {
-        "tags": [
-          "flowers"
-        ],
-        "summary": "Add a new flower to the database",
-        "operationId": "addFlower",
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flower",
-              "read:flower"
-            ]
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Flower"
-        }
       },
-      "put": {
-        "tags": ["Not Yet Implemented"],
-        "summary": "Update an existing flower",
-        "operationId": "updateFlower",
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Recipe not found"
-          },
-          "405": {
-            "description": "Validation exception"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flowers",
-              "read:flowers"
-            ]
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Flower"
-        }
-      }
-    },
-    "/flower/findByTags": {
-      "get": {
-        "tags": ["Not Yet Implemented"],
-        "summary": "Finds Flowers by tags",
-        "description": "Muliple tags can be provided with comma separated strings. Use\\ \\ tag1, tag2, tag3 for testing.",
-        "operationId": "findFlowersByTags",
-        "parameters": [
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "Tags to filter by",
-            "required": true,
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Flower"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Flower"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid tag value"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flower",
-              "read:flower"
-            ]
-          }
-        ]
-      }
-    },
-    "/flowers/{flowerName}": {
-      "get": {
-        "tags": ["Not Yet Implemented"],
-        "summary": "Finds Flowers by name",
-        "description": "Each flower has a unique name, this will basically find a single flower by an exact name almost like an id",
-        "operationId": "findFlowerByName",
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user",
+        "description": "This is for when a user creates an account",
+        "operationId": "createUser",
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "flowerName",
-            "in": "path",
-            "description": "Flower name string is required and functions as id",
-            "required": true,
-            "type": "string",
-            "items": {
-              "type": "string",
-              "default": "available"
-            },
-            "collectionFormat": "csv"
-          }
-        ],
-        "security": [
-          {
-            "floral_auth": ["write:flowers", "read:flowers"]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "400": {
-            "description": "Invalid flower name value"
-          }
-        }
-      }
-    },
-    "put": {
-      "tags": [
-        "Not Yet Implemented"
-      ],
-      "summary": "Updates a flower in the Flower Guide with form data",
-      "operationId": "updateFlowerWithForm",
-      "parameters": [
-        {
-          "name": "flowerId",
-          "in": "path",
-          "description": "ID of flower that needs to be updated",
-          "required": true,
-          "schema": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      ],
-      "responses": {
-        "405": {
-          "description": "Invalid input"
-        }
-      },
-      "security": [
-        {
-          "floral_auth": [
-            "write:flower",
-            "read:flower"
-          ]
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "application/x-www-form-urlencoded": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "description": "Updated name of the recipe",
-                  "type": "string"
-                },
-                "status": {
-                  "description": "Updated status of the recipe",
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "delete": {
-      "tags": [
-        "Not Yet Implemented"
-      ],
-      "summary": "Deletes a flower",
-      "operationId": "deleteFlower",
-      "parameters": [
-        {
-          "name": "flowerId",
-          "in": "path",
-          "description": "Flower id to delete",
-          "required": true,
-          "schema": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      ],
-      "responses": {
-        "400": {
-          "description": "Invalid ID supplied"
-        },
-        "404": {
-          "description": "Flower not found"
-        }
-      },
-      "security": [
-        {
-          "floral_auth": [
-            "write:flower",
-            "read:flower"
-          ]
-        }
-      ]
-    },
-    "/flower/{flowerId}/uploadImage": {
-      "post": {
-        "tags": [
-          "Not Yet Implemented"
-        ],
-        "summary": "uploads an image",
-        "operationId": "uploadFlowerFile",
-        "parameters": [
-          {
-            "name": "flowerId",
-            "in": "path",
-            "description": "ID of flower to update",
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "$ref": "#/definitions/Credentials"
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/ApiResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flower",
-              "read:flower"
-            ]
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/octet-stream": {
-              "schema": {
-                "type": "string",
-                "format": "binary"
-              }
+          "default": {
+            "description": "A User object",
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
         }
       }
-    }
-  },
-  "ApiResponse": {
-    "type": "object",
-    "properties": {
-      "code": {
-        "type": "integer",
-        "format": "int32"
-      },
-      "type": {
-        "type": "string"
-      },
-      "message": {
-        "type": "string"
-      }
-    }
-  },
-  "requestBodies": {
-    "Flower": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/definitions/Flower"
-          }
-        },
-        "application/xml": {
-          "schema": {
-            "$ref": "#/definitions/Flower"
-          }
-        }
-      },
-      "description": "Flower object that needs to be added to the Flower Guide",
-      "required": true
     }
   },
   "securityDefinitions": {
@@ -599,41 +340,18 @@
         },
         "displayName": {
           "type": "string"
-        }        }
-      }
-    },
-    "Credentials": {
-      "type": "object",
-      "required": ["password", "username", "displayName"],
-      "properties": {
-        "username": {
-          "type": "string"
         },
-        "password": {
-          "type": "string"
+        "info": {
+          "$ref": "#/definitions/User_info"
         },
-        "displayName": {
-          "type": "string"
+        "profile": {
+          "$ref": "#/definitions/User_profile"
         }
       }
     },
-    "Tag": {
+    "Theme": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Flower": {
-      "type": "object",
-      "required": [
-        "id", "name", "commonName", "botanicalName", "botanicalGenus", "description", "colorRange"
-      ],
+      "required": ["colors", "fontFamily", "fontSize", "name"],
       "properties": {
         "id": {
           "type": "integer",
@@ -641,87 +359,215 @@
         },
         "name": {
           "type": "string",
-          "example": "rose"
+          "example": "Nike Theme"
         },
-        "commonName": {
+        "fontSize": {
+          "type": "integer",
+          "example": 18
+        },
+        "fontFamily": {
+          "type": "string",
+          "example": "futura"
+        },
+        "inspiration": {
+          "type": "string",
+          "example": "https://www.nike.com/"
+        },
+        "colors": {
+          "type": "array",
+          "example": ["", "#111", "#fff", "#F5F3EE", "#757575", "#7e7e7e", ", ", ", ", ""],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "username": {
           "type": "string"
         },
-        "botanicalName": {
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "User_info": {
+      "type": "object",
+      "properties": {
+        "email": {
           "type": "string"
         },
-        "botanicalFamily": {
+        "phoneNumber": {
           "type": "string"
         },
-        "botanicalGenus": {
+        "currentLocation": {
           "type": "string"
         },
-        "availability": {
+        "openToNewOpportunities": {
+          "type": "boolean"
+        },
+        "profileIsPublic": {
+          "type": "boolean"
+        },
+        "theme_name": {
+          "type": "string"
+        }
+      }
+    },
+    "User_profile_experience": {
+      "type": "object",
+      "properties": {
+        "jobTitle": {
+          "type": "string"
+        },
+        "jobDescription": {
+          "type": "string"
+        },
+        "details": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "where": {
-                "type": "string"
-              },
-              "when": {
-                "type": "string"
-              }
-            }
+            "type": "string"
           }
         },
-        "vaseLife": {
+        "dateStart": {
+          "type": "string"
+        },
+        "dateEnd": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "User_profile_education": {
+      "type": "object",
+      "properties": {
+        "institution": {
+          "type": "string"
+        },
+        "programTitle": {
+          "type": "string"
+        },
+        "programDescription": {
+          "type": "string"
+        },
+        "dateStart": {
+          "type": "string"
+        },
+        "dateEnd": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string"
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "User_profile_projects": {
+      "type": "object",
+      "properties": {
+        "title": {
           "type": "string"
         },
         "description": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "notes": {
-                "type": "string"
-              },
-              "stemLength": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "colorRange": {
           "type": "string"
         },
-        "florist": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "conditioning": {
-                "type": "string"
-              },
-              "storage": {
-                "type": "string"
-              },
-              "display": {
-                "type": "string"
-              },
-              "stemType": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "homeCare": {
+        "dateStart": {
           "type": "string"
         },
-        "tags": {
+        "dateEnd": {
+          "type": "string"
+        },
+        "githubUrl": {
+          "type": "string"
+        },
+        "hostedUrl": {
+          "type": "string"
+        },
+        "images": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Tag"
+            "type": "string"
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "User_profile_references": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "relationship": {
+          "type": "string"
+        },
+        "contactInfo": {
+          "type": "string"
+        },
+        "yearsKnown": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "knownFromWhere": {
+          "type": "string"
+        }
+      }
+    },
+    "User_profile": {
+      "type": "object",
+      "properties": {
+        "experience": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_experience"
+          }
+        },
+        "education": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_education"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_projects"
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_references"
           }
         }
       }
     }
-  }  
-
-
-
-
+  }
+}
