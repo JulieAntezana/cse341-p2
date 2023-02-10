@@ -59,15 +59,20 @@
                   "type": "integer",
                   "format": "int64"
                 },
-                "name": {
-                  "type": "string",
-                  "example": "Nike Theme"
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "displayName": {
+                  "type": "string"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid theme name value"
+            "description": "Invalid user name value"
           }
         }
       }
