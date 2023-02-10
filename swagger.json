@@ -221,7 +221,7 @@
     }
   },
   "paths": {
-    "/flower": {
+    "/flowers": {
       "post": {
         "tags": [
           "flower"
@@ -246,9 +246,7 @@
         }
       },
       "put": {
-        "tags": [
-          "flower"
-        ],
+        "tags": ["flowers"],
         "summary": "Update an existing flower",
         "operationId": "updateFlower",
         "responses": {
@@ -265,8 +263,8 @@
         "security": [
           {
             "floral_auth": [
-              "write:flower",
-              "read:flower"
+              "write:flowers",
+              "read:flowers"
             ]
           }
         ],
@@ -277,9 +275,7 @@
     },
     "/flower/findByTags": {
       "get": {
-        "tags": [
-          "flower"
-        ],
+        "tags": ["flowers"],
         "summary": "Finds Flowers by tags",
         "description": "Muliple tags can be provided with comma separated strings. Use\\ \\ tag1, tag2, tag3 for testing.",
         "operationId": "findFlowersByTags",
