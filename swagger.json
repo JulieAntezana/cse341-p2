@@ -169,7 +169,7 @@
         }
       },
       "put": {
-        "tags": ["user"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Updated user",
         "description": "This can only be done by the logged in user.",
         "operationId": "updateUser",
@@ -205,7 +205,7 @@
         }
       },
       "delete": {
-        "tags": ["user"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Delete user",
         "description": "This can only be done by the logged in user.",
         "operationId": "deleteUser",
@@ -234,7 +234,7 @@
     },
     "/user/{getAllUsers}": {
       "get": {
-        "tags": ["user"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Get all users",
         "operationId": "getAllUsers",
         "produces": ["application/json"],
@@ -248,32 +248,6 @@
           },
           "500": {
             "description": "Error occurred"
-          }
-        }
-      },
-      "post": {
-        "tags": ["user"],
-        "summary": "Create user",
-        "description": "This is for when a user creates an account",
-        "operationId": "createUser",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Created user object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Credentials"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "A User object",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
           }
         }
       }
@@ -303,7 +277,7 @@
         }
       },
       "put": {
-        "tags": ["flowers"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Update an existing flower",
         "operationId": "updateFlower",
         "responses": {
@@ -389,7 +363,7 @@
     },
     "/flowers/{flowerName}": {
       "get": {
-        "tags": ["flowers"],
+        "tags": ["Not Yet Implemented"],
         "summary": "Finds Flowers by name",
         "description": "Each flower has a unique name, this will basically find a single flower by an exact name almost like an id",
         "operationId": "findFlowerByName",
@@ -428,7 +402,7 @@
     },
     "put": {
       "tags": [
-        "flower"
+        "Not Yet Implemented"
       ],
       "summary": "Updates a flower in the Flower Guide with form data",
       "operationId": "updateFlowerWithForm",
@@ -479,7 +453,7 @@
     },
     "delete": {
       "tags": [
-        "flower"
+        "Not Yet Implemented"
       ],
       "summary": "Deletes a flower",
       "operationId": "deleteFlower",
@@ -594,20 +568,6 @@
         }
       },
       "description": "Flower object that needs to be added to the Flower Guide",
-      "required": true
-    },
-    "UserArray": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "description": "List of user objects",
       "required": true
     }
   },
