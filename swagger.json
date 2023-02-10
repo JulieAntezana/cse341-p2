@@ -23,491 +23,15 @@
     {
       "name": "user",
       "description": "Operations about user"
+    },
+    {
+      "name": "Not Yet Implemented",
+      "description": "These API endpoints are designed and will be created in the near future"
     }
   ],
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:flower": "modify pets in your account",
-        "read:flower": "read your pets"
-      }
-    }
-  },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "required": ["password", "username"],
-      "properties": {
-        "_id": {
-          "type": "integer",
-          "format": "string"
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "displayName": {
-          "type": "string"
-        }
-      }
-    },
-    "Credentials": {
-      "type": "object",
-      "required": ["password", "username"],
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "Tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "Flower": {
-      "type": "object",
-      "required": [
-        "name",
-        "photoUrls"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string",
-          "example": "rose"
-        },
-        "commonName": {
-          "type": "string"
-        },
-        "botanicalName": {
-          "type": "string"
-        },
-        "botanicalFamily": {
-          "type": "string"
-        },
-        "botanicalGenus": {
-          "type": "string"
-        },
-        "availability": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "where": {
-                "type": "string"
-              },
-              "when": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "vaseLife": {
-          "type": "string"
-        },
-        "description": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "notes": {
-                "type": "string"
-              },
-              "stemLength": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "colorRange": {
-          "type": "string"
-        },
-        "florist": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "conditioning": {
-                "type": "string"
-              },
-              "storage": {
-                "type": "string"
-              },
-              "display": {
-                "type": "string"
-              },
-              "stemType": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "homeCare": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Tag"
-          }
-        }
-      }
-    },
-    "ApiResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "type": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    }
-  },
-  "requestBodies": {
-    "Flower": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "#/definitions/Flower"
-          }
-        },
-        "application/xml": {
-          "schema": {
-            "$ref": "#/definitions/Flower"
-          }
-        }
-      },
-      "description": "Flower object that needs to be added to the Flower Guide",
-      "required": true
-    },
-    "UserArray": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "description": "List of user objects",
-      "required": true
-    }
-  },
+  "schemes": ["https"],
   "paths": {
-    "/flowers": {
-      "post": {
-        "tags": [
-          "flower"
-        ],
-        "summary": "Add a new flower to the database",
-        "operationId": "addFlower",
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flower",
-              "read:flower"
-            ]
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Flower"
-        }
-      },
-      "put": {
-        "tags": ["flowers"],
-        "summary": "Update an existing flower",
-        "operationId": "updateFlower",
-        "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Recipe not found"
-          },
-          "405": {
-            "description": "Validation exception"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flowers",
-              "read:flowers"
-            ]
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/Flower"
-        }
-      }
-    },
-    "/flower/findByTags": {
-      "get": {
-        "tags": ["flowers"],
-        "summary": "Finds Flowers by tags",
-        "description": "Muliple tags can be provided with comma separated strings. Use\\ \\ tag1, tag2, tag3 for testing.",
-        "operationId": "findFlowersByTags",
-        "parameters": [
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "Tags to filter by",
-            "required": true,
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Flower"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Flower"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid tag value"
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flower",
-              "read:flower"
-            ]
-          }
-        ]
-      }
-    },
-    "/flowers/{flowerName}": {
-      "get": {
-        "tags": ["flowers"],
-        "summary": "Finds Flowers by name",
-        "description": "Each flower has a unique name, this will basically find a single flower by an exact name almost like an id",
-        "operationId": "findFlowerByName",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "flowerName",
-            "in": "path",
-            "description": "Flower name string is required and functions as id",
-            "required": true,
-            "type": "string",
-            "items": {
-              "type": "string",
-              "default": "available"
-            },
-            "collectionFormat": "csv"
-          }
-        ],
-        "security": [
-          {
-            "floral_auth": ["write:flowers", "read:flowers"]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "400": {
-            "description": "Invalid flower name value"
-          }
-        }
-      }
-    },
-    "put": {
-      "tags": [
-        "flower"
-      ],
-      "summary": "Updates a flower in the Flower Guide with form data",
-      "operationId": "updateFlowerWithForm",
-      "parameters": [
-        {
-          "name": "flowerId",
-          "in": "path",
-          "description": "ID of flower that needs to be updated",
-          "required": true,
-          "schema": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      ],
-      "responses": {
-        "405": {
-          "description": "Invalid input"
-        }
-      },
-      "security": [
-        {
-          "floral_auth": [
-            "write:flower",
-            "read:flower"
-          ]
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "application/x-www-form-urlencoded": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "description": "Updated name of the recipe",
-                  "type": "string"
-                },
-                "status": {
-                  "description": "Updated status of the recipe",
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "delete": {
-      "tags": [
-        "flower"
-      ],
-      "summary": "Deletes a flower",
-      "operationId": "deleteFlower",
-      "parameters": [
-        {
-          "name": "flowerId",
-          "in": "path",
-          "description": "Flower id to delete",
-          "required": true,
-          "schema": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      ],
-      "responses": {
-        "400": {
-          "description": "Invalid ID supplied"
-        },
-        "404": {
-          "description": "Flower not found"
-        }
-      },
-      "security": [
-        {
-          "floral_auth": [
-            "write:flower",
-            "read:flower"
-          ]
-        }
-      ]
-    }
-    },
-    "/flower/{flowerId}/uploadImage": {
-      "post": {
-        "tags": [
-          "flower"
-        ],
-        "summary": "uploads an image",
-        "operationId": "uploadFlowerFile",
-        "parameters": [
-          {
-            "name": "flowerId",
-            "in": "path",
-            "description": "ID of flower to update",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/ApiResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "floral_auth": [
-              "write:flower",
-              "read:flower"
-            ]
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/octet-stream": {
-              "schema": {
-                "type": "string",
-                "format": "binary"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users": {
+    "/user": {
       "post": {
         "tags": ["user"],
         "summary": "Create user",
@@ -748,7 +272,488 @@
           }
         }
       }
+    },
+    "/flowers": {
+      "post": {
+        "tags": [
+          "flower"
+        ],
+        "summary": "Add a new flower to the database",
+        "operationId": "addFlower",
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "floral_auth": [
+              "write:flower",
+              "read:flower"
+            ]
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Flower"
+        }
+      },
+      "put": {
+        "tags": ["flowers"],
+        "summary": "Update an existing flower",
+        "operationId": "updateFlower",
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "floral_auth": [
+              "write:flowers",
+              "read:flowers"
+            ]
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Flower"
+        }
+      }
+    },
+    "/flower/findByTags": {
+      "get": {
+        "tags": ["flowers"],
+        "summary": "Finds Flowers by tags",
+        "description": "Muliple tags can be provided with comma separated strings. Use\\ \\ tag1, tag2, tag3 for testing.",
+        "operationId": "findFlowersByTags",
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Flower"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Flower"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid tag value"
+          }
+        },
+        "security": [
+          {
+            "floral_auth": [
+              "write:flower",
+              "read:flower"
+            ]
+          }
+        ]
+      }
+    },
+    "/flowers/{flowerName}": {
+      "get": {
+        "tags": ["flowers"],
+        "summary": "Finds Flowers by name",
+        "description": "Each flower has a unique name, this will basically find a single flower by an exact name almost like an id",
+        "operationId": "findFlowerByName",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "flowerName",
+            "in": "path",
+            "description": "Flower name string is required and functions as id",
+            "required": true,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "default": "available"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "security": [
+          {
+            "floral_auth": ["write:flowers", "read:flowers"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid flower name value"
+          }
+        }
+      }
+    },
+    "put": {
+      "tags": [
+        "flower"
+      ],
+      "summary": "Updates a flower in the Flower Guide with form data",
+      "operationId": "updateFlowerWithForm",
+      "parameters": [
+        {
+          "name": "flowerId",
+          "in": "path",
+          "description": "ID of flower that needs to be updated",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "405": {
+          "description": "Invalid input"
+        }
+      },
+      "security": [
+        {
+          "floral_auth": [
+            "write:flower",
+            "read:flower"
+          ]
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "Updated name of the recipe",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Updated status of the recipe",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": [
+        "flower"
+      ],
+      "summary": "Deletes a flower",
+      "operationId": "deleteFlower",
+      "parameters": [
+        {
+          "name": "flowerId",
+          "in": "path",
+          "description": "Flower id to delete",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      ],
+      "responses": {
+        "400": {
+          "description": "Invalid ID supplied"
+        },
+        "404": {
+          "description": "Flower not found"
+        }
+      },
+      "security": [
+        {
+          "floral_auth": [
+            "write:flower",
+            "read:flower"
+          ]
+        }
+      ]
+    },
+    "/flower/{flowerId}/uploadImage": {
+      "post": {
+        "tags": [
+          "flower"
+        ],
+        "summary": "uploads an image",
+        "operationId": "uploadFlowerFile",
+        "parameters": [
+          {
+            "name": "flowerId",
+            "in": "path",
+            "description": "ID of flower to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ApiResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "floral_auth": [
+              "write:flower",
+              "read:flower"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
     }
-  } 
+  },
+  "ApiResponse": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "type": {
+        "type": "string"
+      },
+      "message": {
+        "type": "string"
+      }
+    }
+  },
+  "requestBodies": {
+    "Flower": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/definitions/Flower"
+          }
+        },
+        "application/xml": {
+          "schema": {
+            "$ref": "#/definitions/Flower"
+          }
+        }
+      },
+      "description": "Flower object that needs to be added to the Flower Guide",
+      "required": true
+    },
+    "UserArray": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "description": "List of user objects",
+      "required": true
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "format": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }        }
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Flower": {
+      "type": "object",
+      "required": [
+        "id", "name", "commonName", "botanicalName", "botanicalGenus", "description", "colorRange"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "rose"
+        },
+        "commonName": {
+          "type": "string"
+        },
+        "botanicalName": {
+          "type": "string"
+        },
+        "botanicalFamily": {
+          "type": "string"
+        },
+        "botanicalGenus": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "where": {
+                "type": "string"
+              },
+              "when": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "vaseLife": {
+          "type": "string"
+        },
+        "description": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "notes": {
+                "type": "string"
+              },
+              "stemLength": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "colorRange": {
+          "type": "string"
+        },
+        "florist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditioning": {
+                "type": "string"
+              },
+              "storage": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              },
+              "stemType": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "homeCare": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    }
+  }  
+
+
 
 
