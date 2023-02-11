@@ -12,7 +12,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "localhost:8080/api-docs",
+  "host": "https://cse341-p2.onrender.com/api-docs/",
   "basePath": "/",
   "tags": [
     {
