@@ -31,3 +31,33 @@ content-type: application/json
 DELETE http://localhost:8080/user/JoveyJoJo
 
 
+// PRODUCTION Deploy 
+
+### Get all users
+GET https://cse341-w2.onrender.com/user/ 
+
+### Get a single user by username
+GET https://cse341-w2.onrender.com/user/username 
+
+### Create a user
+POST https://cse341-w2.onrender.com/user/ HTTP/1.1
+content-type: application/json
+
+{           
+  "username": "Rose",                           
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa",            
+}
+  
+### Update a user
+PUT https://cse341-w2.onrender.com/user/username HTTP/1.1
+content-type: application/json
+
+{          
+  "username": "Rose",                            
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa"            
+}
+
+### Delete a user
+DELETE https://cse341-w2.onrender.com/user/username
