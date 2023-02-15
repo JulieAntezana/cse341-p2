@@ -1,195 +1,90 @@
 module.exports = (mongoose) => {
-  const Flower = mongoose.model(
-    'flowers',
-    mongoose.Schema({
-      "Flower": {
-        "type": {
-          "type": "String"
-        },
-        "required": {
-          "type": [
-            "String"
-          ]
-        },
-        "properties": {
-          "id": {
-            "type": {
-              "type": "String"
-            },
-            "format": {
-              "type": "String"
-            }
-          },
-          "category": {
-            "$ref": {
-              "type": "String"
-            }
-          },
-          "name": {
-            "type": {
-              "type": "String"
-            },
-            "example": {
-              "type": "String"
-            }
-          },
-          "commonName": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "botanicalName": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "botanicalFamily": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "botanicalGenus": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "availability": {
-            "type": {
-              "type": "String"
-            },
-            "items": {
-              "type": {
-                "type": "String"
-              },
-              "properties": {
-                "where": {
-                  "type": {
-                    "type": "String"
-                  }
-                },
-                "when": {
-                  "type": {
-                    "type": "String"
-                  }
-                }
-              }
-            }
-          },
-          "vaseLife": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "description": {
-            "type": {
-              "type": "String"
-            },
-            "items": {
-              "type": {
-                "type": "String"
-              },
-              "properties": {
-                "notes": {
-                  "type": {
-                    "type": "String"
-                  }
-                },
-                "stemLength": {
-                  "type": {
-                    "type": "String"
-                  }
-                }
-              }
-            }
-          },
-          "colorRange": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "florist": {
-            "type": {
-              "type": "String"
-            },
-            "items": {
-              "type": {
-                "type": "String"
-              },
-              "properties": {
-                "conditioning": {
-                  "type": {
-                    "type": "String"
-                  }
-                },
-                "storage": {
-                  "type": {
-                    "type": "String"
-                  }
-                },
-                "display": {
-                  "type": {
-                    "type": "String"
-                  }
-                },
-                "stemType": {
-                  "type": {
-                    "type": "String"
-                  }
-                }
-              }
-            }
-          },
-          "homeCare": {
-            "type": {
-              "type": "String"
-            }
-          },
-          "photoUrls": {
-            "type": {
-              "type": "String"
-            },
-            "xml": {
-              "name": {
-                "type": "String"
-              },
-              "wrapped": {
-                "type": "Boolean"
-              }
-            },
-            "items": {
-              "type": {
-                "type": "String"
-              }
-            }
-          },
-          "tags": {
-            "type": {
-              "type": "String"
-            },
-            "xml": {
-              "name": {
-                "type": "String"
-              },
-              "wrapped": {
-                "type": "Boolean"
-              }
-            },
-            "items": {
-              "$ref": {
-                "type": "String"
-              }
-            }
-          }
-        },
-        "xml": {
-          "name": {
-            "type": "String"
-          }
-        }
+  const flowerSchema = mongoose.Schema({
+      flowerName: {
+        type: String
+      },
+      botanicalFamily: {
+        type: String
+      },
+      botanicalGenus: {
+        type: String
       }
-    })
-  );
+    },
+    {collection: 'flowers'}
+    );
 
-  return Flower;
+  return mongoose.model('flowers', flowerSchema);
 };
 
+
+
+
+
+
+// module.exports = (mongoose) => {
+//   const flowerSchema = mongoose.Schema({
+//     "flowerName": {
+//       "type": "string",
+//       "example": "Rose"
+//     },
+//     "botanicalName": {
+//       "type": "string"
+//     },
+//     "botanicalFamily": {
+//       "type": "string"
+//     },
+//     "botanicalGenus": {
+//       "type": "string"
+//     },
+//     "availability": {
+//       "type": "string"
+//     },
+//     "vaseLife": {
+//       "type": "string"
+//     },
+//     "description": {
+//       "type": "array",
+//       "items": {
+//         "type": "object",
+//         "properties": {
+//           "notes": {
+//             "type": "string"
+//           },
+//           "stemLength": {
+//             "type": "string"
+//           }
+//         }
+//       }
+//     },
+//     "colorRange": {
+//       "type": "string"
+//     },
+//     "florist": {
+//       "type": "array",
+//       "items": {
+//         "type": "object",
+//         "properties": {
+//           "conditioning": {
+//             "type": "string"
+//           },
+//           "storage": {
+//             "type": "string"
+//           },
+//           "display": {
+//             "type": "string"
+//           },
+//           "stemType": {
+//             "type": "string"
+//           }
+//         }
+//       }
+//     },
+//     "homeCare": {
+//       "type": "string"
+//     }
+//   },
+//   {collection: 'flowers'},
+//   );
+
+//   return mongoose.model('flowers', flowerSchema);
+// };

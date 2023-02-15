@@ -1,0 +1,33 @@
+// LOCALHOST 
+### get all users
+GET http://localhost:8080/user
+
+### Get single user by username
+GET http://localhost:8080/user/JoveyJoJo
+
+### Create a user 
+POST http://localhost:8080/user/ HTTP/1.1
+content-type: application/json
+
+{           
+  "username": "JoveyJoJo",
+  "password": "P@ssw0rd7890",
+  "displayName": "Jovey",
+  "email": "joveyjojo@test.com"
+}
+
+### Update a user 
+PUT http://localhost:8080/user/JoveyJoJo HTTP/1.1
+content-type: application/json
+
+{           
+  "username": "JoveyJoJo",
+  "password": "P@ssw0rd7890",
+  "displayName": "JoveyJoJo",
+  "email": "joveyjojo@test.com"
+}
+
+### Delete a user
+DELETE http://localhost:8080/user/JoveyJoJo
+
+

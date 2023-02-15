@@ -7,7 +7,9 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.flowers = require('./flowers.js')(mongoose);
-db.recipes = require('./recipes.js')(mongoose);
-db.users = require('./user.js')(mongoose);
+db.user = require('./user.js')(mongoose);
 
 module.exports = db;
+
+
+// db.recipes = require('./recipes.js')(mongoose);

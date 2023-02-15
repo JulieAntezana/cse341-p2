@@ -31,11 +31,11 @@ module.exports.create = (req, res) => {
   }
 };
 
-module.exports.getAll = (req, res) => {
+module.exports.getAll  = async (req, res) => {
   try {
     User.find({})
       .then((data) => {
-        res.status(200).send(data);
+        res.status(200).json(data);
       })
       .catch((err) => {
         res.status(500).send({

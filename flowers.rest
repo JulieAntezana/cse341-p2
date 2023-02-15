@@ -1,0 +1,61 @@
+// LOCALHOST 
+### get all flowers
+GET http://localhost:8080/flowers
+
+### Get single flower by flowerName
+GET http://localhost:8080/flowers/Peony
+
+### Create a flower 
+POST http://localhost:8080/flowers/ HTTP/1.1
+content-type: application/json
+
+{           
+  "flowerName": "Peony",                            
+  "botanicalFamily": "Paeoniaceae",           
+  "botanicalGenus": "Paeonia"            
+}
+
+### Update a flower 
+PUT http://localhost:8080/flowers/Peony HTTP/1.1
+content-type: application/json
+
+{           
+  "flowerName": "Peony",                            
+  "botanicalFamily": "Paeoniaceae",           
+  "botanicalGenus": "Paeonias"            
+}
+
+### Delete a flower
+DELETE http://localhost:8080/flowers/Peony
+
+
+// PRODUCTION Deploy 
+
+### Get all flowers
+GET https://cse341-w2.onrender.com/flowers/ 
+
+### Get a single flower by Id
+GET https://cse341-w2.onrender.com/flowers/63de262c882fc17d74f6d5e7 
+
+### Create a flower 
+POST https://cse341-w2.onrender.com/flowers/ HTTP/1.1
+content-type: application/json
+
+{           
+  "flowerName": "Rose",                           
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa",            
+}
+  
+### Update a flower 
+PUT https://cse341-w2.onrender.com/flowers/63deab1a12dbce785846d80f HTTP/1.1
+content-type: application/json
+
+{          
+  "flowerName": "Rose",                            
+  "botanicalFamily": "Rosaceae",           
+  "botanicalGenus": "Rosa"            
+}
+
+### Delete a flower
+DELETE https://cse341-w2.onrender.com/flowers/63deab1a12dbce785846d80f

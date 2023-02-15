@@ -9,8 +9,7 @@ GET http://localhost:8080/flowers/63cc041a1b1ea223f39615c1
 POST http://localhost:8080/flowers/ HTTP/1.1
 content-type: application/json
 
-{
-  "_id": "22222",            
+{           
   "commonName": "Rose",                
   "botanicalName": "Rosa",             
   "botanicalFamily": "Rosaceae",           

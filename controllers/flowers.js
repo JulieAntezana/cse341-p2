@@ -1,127 +1,103 @@
 const db = require('../models');
 const Flower = db.flowers;
 
-exports.getFlower = (req, res) => {
-  const flowerName = req.params.flowerName;
-  Flower.find({ flowerName: flowerName })
-    .then((data) => {
-      if (!data) res.status(404).send({ message: 'Not found flower with name: ' + flowerName });
-      else res.send(data[0]);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Error retrieving flower with flowerName=' + flowerName,
-        error: err
+module.exports.getAll  = async (req, res) => {
+  try {
+    Flower.find({})
+      .then((data) => {
+        res.status(200).json(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || 'Some error occurred while retrieving flowers.'
+        });
       });
-    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
-// const apiKey =
-//   'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
+exports.getFlower = (req, res) => {
+  try {
+    const flowerName = req.params.flowerName;
+    Flower.find({ flowerName: flowerName })
+      .then((data) => {
+        if (!data) res.status(404).send({ message: 'Not found flower with name: ' + flowerName });
+        else res.status(200).send(data[0]);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || 'Error retrieving flower with flowerName=' + flowerName,
+          error: err
+        });
+      });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
-// exports.create = (req, res) => {
-//   /*
-//     #swagger.description = 'API Key if needed: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
-//   */
-//   // Validate request
-//   if (!req.body.name) {
-//     res.status(400).send({ message: 'Content can not be empty!' });
-//     return;
-//   }
+module.exports.createFlower = (req, res) => {
+  try {
+    if (!req.body.flowerName || !req.body.botanicalFamily || !req.body.botanicalGenus) {
+      res.status(400).send({ message: 'Content can not be empty!' });
+      return;
+    }
+    const flowers = new Flower(req.body);
+    flowers
+      .save()
+      .then((data) => {
+        console.log(data);
+        res.status(201).send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || 'Some error occurred while creating the flower.'
+        });
+      });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
-  
+module.exports.updateFlower = async (req, res) => {
+  try {
+    const flowerName = req.params.flowerName;
+    if (!flowerName) {
+      res.status(400).send({ message: 'Invalid Username Supplied' });
+      return;
+    }
+    Flower.findOne({ flowerName: flowerName }, function (err, flowers) {
+      flowers.flowername = req.params.flowername;
+      flowers.botanicalFamily = req.body.botanicalFamily;
+      flowers.botanicalGenus = req.body.botanicalGenus;
+      flowers.save(function (err) {
+        if (err) {
+          res.status(500).json(err || 'Some error occurred while updating the contact.');
+        } else {
+          res.status(204).send();
+        }
+      });
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
-//   // Create a Flower
-//   const flower = new Flower({
-//     flower_id: req.body.flower,
-//     name: req.body.name,
-//     commonName: req.body.commonName,
-//     botanicalName: req.body.botanicalName,
-//     botanicalFamily: req.body.botanicalFamily,
-//     botanicalGenus: req.body.botanicalGenus,
-//     availability: array [
-//       where: req.body.where,
-//       when: req.body.when
-//     ],
-//     vaseLife: req.body.vaseLife,
-//     description: array [
-//       notes: req.body.notes,
-//       stemLength: req.body.stemLength
-//     ],
-//     colorRange: req.body.colorRange,
-//     florist: array [
-//       conditioning: req.body.conditioning,
-//       storage: req.body.storage,
-//       display: req.body.display,
-//       stemType: req.body.stemType
-//     ],
-//     homeCare:req.body.homeCare
-//   });
-//   // Save Flower in the database
-//   flower
-//     .save(flower)
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message:
-//           err.message || 'Some error occurred while creating the Flower.',
-//       });
-//     });
-// };
-
-// exports.findAll = (req, res) => {
-//   /*
-//     #swagger.description = 'API Key if needed: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68XwZj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
-//   */
-//   console.log(req.header('apiKey'));
-//   if (req.header('apiKey') === apiKey) {
-//     Flower.find(
-//       {},
-//       {
-//         flower_id: 1,
-//         name: 1,
-//         location: 1,
-//         dedicated: 1,
-//         additionalInfo: 1,
-//         _id: 0,
-//       }
-//     )
-//       .then((data) => {
-//         res.send(data);
-//       })
-//       .catch((err) => {
-//         res.status(500).send({
-//           message:
-//             err.message || 'Some error occurred while retrieving flowers.',
-//         });
-//       });
-//   } else {
-//     res.send('Invalid apiKey, please read the documentation.');
-//   }
-// };
-
-// // Find a single Flower with an id
-// exports.findOne = (req, res) => {
-
-//   const flower_id = req.params.flower_id;
-//   if (req.header('apiKey') === apiKey) {
-//     Flower.find({ flower_id: flower_id })
-//       .then((data) => {
-//         if (!data)
-//           res
-//             .status(404)
-//             .send({ message: 'Not found Flower with id ' + flower_id });
-//         else res.send(data[0]);
-//       })
-//       .catch((err) => {
-//         res.status(500).send({
-//           message: 'Error retrieving Flower with flower_id=' + flower_id,
-//         });
-//       });
-//   } else {
-//     res.send('Invalid apiKey, please read the documentation.');
-//   }
-// };
-
+module.exports.deleteFlower = async (req, res) => {
+  try {
+    const flowerName = req.params.flowerName;
+    if (!flowerName) {
+      res.status(400).send({ message: 'Invalid flower name supplied' });
+      return;
+    }
+    Flower.deleteOne({ flowerName: flowerName }, function (err, result) {
+      if (err) {
+        res.status(500).json(err || 'Some error occurred while deleting the contact.');
+      } else {
+        res.status(204).send(result);
+      }
+    });
+  } catch (err) {
+    res.status(500).json(err || 'Some error occurred while deleting the contact.');
+  }
+};

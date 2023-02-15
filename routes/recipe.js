@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+// const router = express.Router();
 
-const recipeController = require('../controllers/recipe');
+// const recipeController = require('../controllers/recipe');
 
-router.get('/:recipeName', recipeController.getRecipe);
+// router.get('/:recipeName', recipeController.getRecipe);
 
-module.exports = router;
+// module.exports = router;
 
 // routes.get('/', recipes.findAll);
 

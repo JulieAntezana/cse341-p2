@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const flowers = require('./flowers');
-
 
 router.use('/', require('./swagger'));
-router.use('/flower', flowers);
 router.use('/user', require('./user'));
-router.use('/flower', require('./flowers'));
+router.use('/flowers', require('./flowers'));
 
 module.exports = router;

@@ -12,7 +12,9 @@ module.exports = (mongoose) => {
     email: {
       type: String
     }
-  });
+  },
+  {collection: 'user'},
+  );
 
-  return mongoose.model('users', userSchema);
+  return mongoose.model('user', userSchema);
 };

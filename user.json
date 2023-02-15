@@ -1,0 +1,14 @@
+{
+  "user1": {
+    "username": "JodeyJoJo",
+    "password": "P@ssw0rd7890",
+    "displayName": "Jodey",
+    "email": "jjojo@test.com"
+  },
+  "user2": {
+    "username": "JoeyJoJo",
+    "password": "P@ssw0rd7890",
+    "displayName": "Joey",
+    "email": "joeyjojo@test.com"
+  }
+}
