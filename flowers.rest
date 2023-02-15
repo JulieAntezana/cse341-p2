@@ -34,8 +34,8 @@ DELETE http://localhost:8080/flowers/Peony
 ### Get all flowers
 GET https://cse341-w2.onrender.com/flowers/ 
 
-### Get a single flower by Id
-GET https://cse341-w2.onrender.com/flowers/63de262c882fc17d74f6d5e7 
+### Get a single flower by flower name
+GET https://cse341-w2.onrender.com/flowers/Peony
 
 ### Create a flower 
 POST https://cse341-w2.onrender.com/flowers/ HTTP/1.1
@@ -47,8 +47,8 @@ content-type: application/json
   "botanicalGenus": "Rosa",            
 }
   
-### Update a flower 
-PUT https://cse341-w2.onrender.com/flowers/63deab1a12dbce785846d80f HTTP/1.1
+### Update a flower by username
+PUT https://cse341-w2.onrender.com/flowers/Rose HTTP/1.1
 content-type: application/json
 
 {          
@@ -57,5 +57,5 @@ content-type: application/json
   "botanicalGenus": "Rosa"            
 }
 
-### Delete a flower
-DELETE https://cse341-w2.onrender.com/flowers/63deab1a12dbce785846d80f
+### Delete a flower by username
+DELETE https://cse341-w2.onrender.com/flowers/Peony
