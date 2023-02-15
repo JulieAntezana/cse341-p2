@@ -7,9 +7,43 @@ module.exports = (mongoose) => {
         type: String, unique: true, required: [true, "can't be blank"], index: true
       },
       botanicalFamily: {
-        type: String
+        type: String, required: [true, "can't be blank"]
       },
       botanicalGenus: {
+        type: String, required: [true, "can't be blank"]
+      },
+      availability: {
+        type: String
+      },
+      vaselife: {
+        type: String
+      }, 
+      description: {
+        notes: {
+          type: String
+        },
+        stemLength: {
+          type: String
+        }
+      },
+      colorRange: {
+        type: String
+      },
+      florist: {
+        conditioning: {
+          type: String
+        },
+        storage: {
+          type: String
+        },
+        display: {
+          type: String
+        },
+        stemType: {
+          type: String
+        }
+      },
+      homecare: {
         type: String
       }
     },
@@ -41,52 +75,52 @@ module.exports = (mongoose) => {
 //     "botanicalGenus": {
 //       "type": "string"
 //     },
-//     "availability": {
-//       "type": "string"
-//     },
-//     "vaseLife": {
-//       "type": "string"
-//     },
-//     "description": {
-//       "type": "array",
-//       "items": {
-//         "type": "object",
-//         "properties": {
-//           "notes": {
-//             "type": "string"
-//           },
-//           "stemLength": {
-//             "type": "string"
-//           }
-//         }
-//       }
-//     },
-//     "colorRange": {
-//       "type": "string"
-//     },
-//     "florist": {
-//       "type": "array",
-//       "items": {
-//         "type": "object",
-//         "properties": {
-//           "conditioning": {
-//             "type": "string"
-//           },
-//           "storage": {
-//             "type": "string"
-//           },
-//           "display": {
-//             "type": "string"
-//           },
-//           "stemType": {
-//             "type": "string"
-//           }
-//         }
-//       }
-//     },
-//     "homeCare": {
-//       "type": "string"
-//     }
+    // "availability": {
+    //   "type": "string"
+    // },
+    // "vaseLife": {
+    //   "type": "string"
+    // },
+    // "description": {
+    //   "type": "array",
+    //   "items": {
+    //     "type": "object",
+    //     "properties": {
+    //       "notes": {
+    //         "type": "string"
+    //       },
+    //       "stemLength": {
+    //         "type": "string"
+    //       }
+    //     }
+    //   }
+    // },
+    // "colorRange": {
+    //   "type": "string"
+    // },
+    // "florist": {
+    //   "type": "array",
+    //   "items": {
+    //     "type": "object",
+    //     "properties": {
+    //       "conditioning": {
+    //         "type": "string"
+    //       },
+    //       "storage": {
+    //         "type": "string"
+    //       },
+    //       "display": {
+    //         "type": "string"
+    //       },
+    //       "stemType": {
+    //         "type": "string"
+    //       }
+    //     }
+    //   }
+    // },
+    // "homeCare": {
+    //   "type": "string"
+    // }
 //   },
 //   {collection: 'flowers'},
 //   );

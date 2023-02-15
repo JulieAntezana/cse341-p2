@@ -446,6 +446,52 @@
         "botanicalGenus": {
           "type": "string",
           "example": "Rosa"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "vaseLife": {
+          "type": "string"
+        },
+        "description": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "notes": {
+                "type": "string"
+              },
+              "stemLength": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "colorRange": {
+          "type": "string"
+        },
+        "florist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "conditioning": {
+                "type": "string"
+              },
+              "storage": {
+                "type": "string"
+              },
+              "display": {
+                "type": "string"
+              },
+              "stemType": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "homeCare": {
+          "type": "string"
         }
       }
     },
