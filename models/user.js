@@ -1,7 +1,10 @@
 module.exports = (mongoose) => {
+  
+  const uniqueValidator = require('mongoose-unique-validator');
+  
   const userSchema = mongoose.Schema({
     username: {
-      type: String
+      type: String, unique: true, required: [true, "can't be blank"], index: true
     },
     password: {
       type: String
@@ -10,11 +13,12 @@ module.exports = (mongoose) => {
       type: String
     },
     email: {
-      type: String
+      type: String, lowercase: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true
     }
   },
   {collection: 'user'},
+  {timestamps: true}
   );
-
+  userSchema.plugin(uniqueValidator, {message: 'is already taken.'});
   return mongoose.model('user', userSchema);
 };

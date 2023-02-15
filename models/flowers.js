@@ -1,7 +1,10 @@
 module.exports = (mongoose) => {
+
+  const uniqueValidator = require('mongoose-unique-validator');
+
   const flowerSchema = mongoose.Schema({
       flowerName: {
-        type: String
+        type: String, unique: true, required: [true, "can't be blank"], index: true
       },
       botanicalFamily: {
         type: String
@@ -10,8 +13,10 @@ module.exports = (mongoose) => {
         type: String
       }
     },
-    {collection: 'flowers'}
-    );
+    {collection: 'flowers'},
+    {timestamps: true}
+  );
+  flowerSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 
   return mongoose.model('flowers', flowerSchema);
 };

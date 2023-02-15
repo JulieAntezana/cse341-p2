@@ -32,7 +32,7 @@ DELETE http://localhost:8080/flowers/Peony
 // PRODUCTION Deploy 
 
 ### Get all flowers
-GET https://cse341-w2.onrender.com/flowers/ 
+GET https://cse341-w2.onrender.com/flowers
 
 ### Get a single flower by flower name
 GET https://cse341-w2.onrender.com/flowers/Peony
