@@ -18,7 +18,13 @@ content-type: application/json
     "description": "Pronounced 'Rose-za.' A pretty rose with a number of heads on a single stem. Smaller and more delicate than the single headed rose, they have a charm and appeal all of their own.",
     "stemLength": "Medium",
     "colorRange": "In all colors and shades with the exception of green, blue, and black.",
-    "homeCare": "Recut stems and stand in fresh, cold water in a clean vase. Add flower food change water every 2 to 3 days. Stand in a cool spot with good air circulation. Remove any leaves in contact with water. Arrange spray roses with Veronica, larkspur, or sweet peas for a natural, country look."
+    "homeCare": "Recut stems and stand in fresh, cold water in a clean vase. Add flower food change water every 2 to 3 days. Stand in a cool spot with good air circulation. Remove any leaves in contact with water. Arrange spray roses with Veronica, larkspur, or sweet peas for a natural, country look.",
+    "florist": {
+      "conditioning": "Roses are very sensitive to bacteria, so it's important that all vases and containers are clean. Remove all leaves in contact with water but only remove thorns if necessary. Add flower food change water every 2 - 3 days.",            
+      "storage": "Ideal temperature range 36 - 41 degress Fahrenheit.",                 
+      "display": "Display in a cool spot with good air circulation to minimize the effects of ethylene gas and botrytis.",                 
+      "stemType": "Woody"
+    }
 } 
 
 ### Update a flower 

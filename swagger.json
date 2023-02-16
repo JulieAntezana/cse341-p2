@@ -460,7 +460,11 @@
           "type": "string"
         },
         "colorRange": {
-          "type": "string"
+          "type": "array",
+          "example": ["", "red", "pink", "yellow", "blue", "purple"],
+          "items": {
+            "type": "string"
+          }
         },
         "homeCare": {
           "type": "string"
@@ -468,20 +472,17 @@
         "florist": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "conditioning": {
-                "type": "string"
-              },
-              "storage": {
-                "type": "string"
-              },
-              "display": {
-                "type": "string"
-              },
-              "stemType": {
-                "type": "string"
-              }
+            "conditioning": {
+              "type": "string"
+            },
+            "storage": {
+              "type": "string"
+            },
+            "display": {
+              "type": "string"
+            },
+            "stemType": {
+              "type": "string"
             }
           }
         }
