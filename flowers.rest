@@ -34,11 +34,11 @@ content-type: application/json
 {           
   "flowerName": "Peony",                            
   "botanicalFamily": "Paeoniaceae",           
-  "botanicalGenus": "Paeonias"            
+  "botanicalGenus": "Paeonia"            
 }
 
 ### Delete a flower
-DELETE http://localhost:8080/flowers/Rose
+DELETE http://localhost:8080/flowers/Rose HTTP/1.1
 
 
 // PRODUCTION Deploy 
@@ -88,4 +88,4 @@ content-type: application/json
 }
 
 ### Delete a flower by username
-DELETE https://cse341-w2.onrender.com/flowers/Peony
+DELETE https://cse341-w2.onrender.com/flowers/Peony HTTP/1.1

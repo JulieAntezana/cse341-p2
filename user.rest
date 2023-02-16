@@ -28,7 +28,7 @@ content-type: application/json
 }
 
 ### Delete a user
-DELETE http://localhost:8080/user/JoveyJoJo
+DELETE http://localhost:8080/user/JoveyJoJo HTTP/1.1
 
 
 // PRODUCTION Deploy 
@@ -60,4 +60,4 @@ content-type: application/json
 }
 
 ### Delete a user
-DELETE https://cse341-w2.onrender.com/user/username
+DELETE https://cse341-w2.onrender.com/user/username HTTP/1.1

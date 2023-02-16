@@ -81,8 +81,7 @@ module.exports.updateUser = async (req, res) => {
       user.username = req.params.username;
       user.password = req.body.password;
       user.displayName = req.body.displayName;
-      user.info = req.body.info;
-      user.profile = req.body.profile;
+      user.email = req.body.email;
       user.save(function (err) {
         if (err) {
           res.status(500).json(err || 'Some error occurred while updating the contact.');

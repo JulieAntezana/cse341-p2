@@ -13,7 +13,7 @@ module.exports = (mongoose) => {
       type: String, required: [true, "can't be blank"]
     },
     email: {
-      type: String, lowercase: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true
+      type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true
     }
   },
   {collection: 'user'},
