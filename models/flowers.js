@@ -15,18 +15,19 @@ module.exports = (mongoose) => {
       availability: {
         type: String
       },
-      vaselife: {
+      vaseLife: {
         type: String
       }, 
       description: {
-        notes: {
-          type: String
-        },
-        stemLength: {
-          type: String
-        }
+        type: String
+      },
+      stemLength: {
+        type: String
       },
       colorRange: {
+        type: String
+      },
+      homeCare: {
         type: String
       },
       florist: {
@@ -42,9 +43,6 @@ module.exports = (mongoose) => {
         stemType: {
           type: String
         }
-      },
-      homecare: {
-        type: String
       }
     },
     {collection: 'flowers'},

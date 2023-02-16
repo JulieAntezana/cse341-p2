@@ -454,20 +454,15 @@
           "type": "string"
         },
         "description": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "notes": {
-                "type": "string"
-              },
-              "stemLength": {
-                "type": "string"
-              }
-            }
-          }
+          "type": "string"
+        },
+        "stemLength": {
+          "type": "string"
         },
         "colorRange": {
+          "type": "string"
+        },
+        "homeCare": {
           "type": "string"
         },
         "florist": {
@@ -489,9 +484,6 @@
               }
             }
           }
-        },
-        "homeCare": {
-          "type": "string"
         }
       }
     },
