@@ -29,6 +29,14 @@
     }
   ],
   "schemes": ["http", "https"],
+  "security": [
+    {
+      "petstore_auth": [
+        "write:pets", 
+        "read:pets"
+      ]
+    }
+  ],
   "paths": {
     "/flowers": {
       "get": {
@@ -67,11 +75,27 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "A User object",
+          "201": {
+            "description": "successfully created flower",
             "schema": {
-              "$ref": "#/definitions/Flower"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Rose"
+                }
+              }
             }
+          },
+          "400": {
+            "description": "Invalid flower name value"
+          },
+          "500": {
+            "description": "Some error occurred while creating the flower"
           }
         }
       }
@@ -95,11 +119,6 @@
               "default": "available"
             },
             "collectionFormat": "csv"
-          }
-        ],
-        "security": [
-          {
-            "petstore_auth": ["write:pets", "read:pets"]
           }
         ],
         "responses": {
@@ -399,8 +418,8 @@
       "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
       "flow": "implicit",
       "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
+        "read:pets": "read your pets",
+        "write:pets": "modify pets in your account"
       }
     }
   },

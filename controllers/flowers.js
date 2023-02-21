@@ -63,16 +63,24 @@ module.exports.updateFlower = async (req, res) => {
   try {
     const flowerName = req.params.flowerName;
     if (!flowerName) {
-      res.status(400).send({ message: 'Invalid Username Supplied' });
+      res.status(400).send({ message: 'Invalid flower name Supplied' });
       return;
     }
     Flower.findOne({ flowerName: flowerName }, function (err, flowers) {
       flowers.flowername = req.params.flowername;
       flowers.botanicalFamily = req.body.botanicalFamily;
       flowers.botanicalGenus = req.body.botanicalGenus;
+      flowers.availability = req.body.availability;
+      flowers.vaseLife = req.body.vaseLife;
+      flowers.description = req.body.description;
+      flowers.stemLength = req.body.stemLength;
+      flowers.colorRange = req.body.colorRange;
+      flowers.homeCare = req.body.homeCare;
+      flowers.florist = req.body.florist;
+      
       flowers.save(function (err) {
         if (err) {
-          res.status(500).json(err || 'Some error occurred while updating the contact.');
+          res.status(500).json(err || 'Some error occurred while updating the flower.');
         } else {
           res.status(204).send();
         }
