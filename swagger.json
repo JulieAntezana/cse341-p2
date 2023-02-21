@@ -479,11 +479,7 @@
           "type": "string"
         },
         "colorRange": {
-          "type": "array",
-          "example": ["", "red", "pink", "yellow", "blue", "purple"],
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         },
         "homeCare": {
           "type": "string"
