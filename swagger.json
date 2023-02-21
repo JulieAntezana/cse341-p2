@@ -130,6 +130,9 @@
           },
           "400": {
             "description": "Invalid flower name value"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       },
@@ -166,6 +169,9 @@
           },
           "404": {
             "description": "Flower not found"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       },
@@ -193,6 +199,9 @@
           },
           "404": {
             "description": "Flower not found"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       }
@@ -252,6 +261,9 @@
           },
           "400": {
             "description": "Invalid user name value"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       }
@@ -299,6 +311,9 @@
           },
           "400": {
             "description": "Invalid username/password supplied"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       }
@@ -311,8 +326,11 @@
         "produces": ["application/json"],
         "parameters": [],
         "responses": {
-          "default": {
+          "200": {
             "description": "successful operation"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       }
@@ -344,6 +362,9 @@
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       },
@@ -380,6 +401,9 @@
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       },
@@ -407,6 +431,9 @@
           },
           "404": {
             "description": "User not found"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       }
