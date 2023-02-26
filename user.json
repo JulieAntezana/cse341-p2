@@ -10,5 +10,11 @@
     "password": "P@ssw0rd7890",
     "displayName": "Joey",
     "email": "joeyjojo@test.com"
+  },
+  "user3": {
+    "username": "JoelyJoJo",
+    "password": "P@ssw0rd7890",
+    "displayName": "Joely",
+    "email": "joelyjojo@test.com"
   }
 }

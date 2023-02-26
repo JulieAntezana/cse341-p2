@@ -29,15 +29,37 @@
     }
   ],
   "schemes": ["http", "https"],
-  "security": [
-    {
-      "petstore_auth": [
-        "write:pets", 
-        "read:pets"
-      ]
-    }
-  ],
   "paths": {
+    "/": {
+      "get": {
+        "tags": ["auth0"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": ["auth0"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      }
+    },
     "/flowers": {
       "get": {
         "tags": ["flowers"],
@@ -60,6 +82,11 @@
       "post": {
         "tags": ["flowers"],
         "summary": "Create new flower",
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ],
         "description": "This is for when flower is added to the database",
         "operationId": "createFlower",
         "produces": ["application/json"],
@@ -139,6 +166,11 @@
       "put": {
         "tags": ["flowers"],
         "summary": "Updated flower",
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ],
         "description": "Updates the flower in the database.",
         "operationId": "updateFlower",
         "produces": ["application/json"],
@@ -188,6 +220,11 @@
             "description": "The name that needs to be deleted",
             "required": true,
             "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
           }
         ],
         "responses": {
@@ -268,11 +305,10 @@
         }
       }
     },
-    "/user/login": {
+    "/login": {
       "get": {
-        "tags": ["Not Yet Implemented"],
+        "tags": ["auth0"],
         "summary": "Logs user into the system",
-        "operationId": "loginUser",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -318,9 +354,9 @@
         }
       }
     },
-    "/user/logout": {
+    "/logout": {
       "get": {
-        "tags": ["Not Yet Implemented"],
+        "tags": ["auth0"],
         "summary": "Logs out current logged in user session",
         "operationId": "logoutUser",
         "produces": ["application/json"],
@@ -371,6 +407,11 @@
       "put": {
         "tags": ["user"],
         "summary": "Updated user",
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ],
         "description": "This can only be done by the logged in user.",
         "operationId": "updateUser",
         "produces": ["application/json"],
@@ -410,6 +451,11 @@
       "delete": {
         "tags": ["user"],
         "summary": "Delete user",
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ],
         "description": "This can only be done by the logged in user.",
         "operationId": "deleteUser",
         "produces": ["application/json"],
@@ -436,17 +482,6 @@
             "description": "Error occurred"
           }
         }
-      }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "read:pets": "read your pets",
-        "write:pets": "modify pets in your account"
       }
     }
   },
@@ -527,6 +562,17 @@
               "type": "string"
             }
           }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "http://petstore.swagger.io/oauth/authorize",
+        "flow": "implicit",
+        "scopes": {
+          "read:pets": "read flowers in your account",
+          "write:pets": "modify flowers in your account"
         }
       }
     },

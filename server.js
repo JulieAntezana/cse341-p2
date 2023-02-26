@@ -33,9 +33,17 @@ app.get('/', (req, res) => {
   });
 
   app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-  });
+    try{
 
+      // const x = req.oidc.user;
+      // console.log(x)
+      // res.send('ook') 
+      res.send(JSON.stringify(req.oidc.user));
+    } catch (err){
+      // res.send('badd')
+      res.status(500).json(err);
+    }
+  }); 
 
 const db = require('./models');
 db.mongoose
